@@ -2,15 +2,9 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from textblob import TextBlob
-
-map = [""]
+from django.urls import reverse
 
 def valcalc(s):
-    #value = 0
-    #spl = s.split(' ')
-    #for x in spl:
-    #    if x=='xbox':
-    #        value+=1
     value = TextBlob(s).sentiment
     return list(value)[0]
 
@@ -23,5 +17,10 @@ class Post(models.Model):
 
     def __str__(self):
         return(self.title)
+
+    def get_absolute_url(self):
+        return reverse('blog-home')
+
+
 
 

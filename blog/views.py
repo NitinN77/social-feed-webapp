@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from queue import PriorityQueue
+from django.views.generic import ListView,CreateView
 from .models import Post,valcalc
 from django.contrib.auth.models import User
 
@@ -37,15 +38,34 @@ while not pq.empty():
 
 def home(request):
     context = {
-        'posts2deq':posts2deq
+        'posts':Post.objects.all(),
+        'posts2deq':posts2deq,
     }
     return render(request, 'blog/home.html', context)
 
 def home1(request):
     context = {
-        'posts2deq':posts2rdeq
+        'posts':Post.objects.all(),
+        'posts2deq':posts2rdeq,
     }
     return render(request, 'blog/home.html', context)
+
+class PostListView(ListView):
+    model = Post
+    template_name = 'blog/home.html'
+    context_object_name = 'posts'
+
+
+class PostCreateView(CreateView):
+    model = Post
+    fields = ['title', 'content']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+    
+
+
 
 def about(request):
     return render(request, 'blog/about.html',{'title':'About'})
