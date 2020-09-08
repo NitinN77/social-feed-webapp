@@ -18,10 +18,10 @@ posts2rdeq = []
 #p1.save()
 
 for post in Post.objects.all():
-   posts2.append([-valcalc(post.content),post.title,post.content,post.author,])
+   posts2.append([-valcalc(post.content),post.title,post.content,post.author,post.date_posted])
 
 for post in Post.objects.all():
-   posts2r.append([valcalc(post.content),post.title,post.content,post.author,])
+   posts2r.append([valcalc(post.content),post.title,post.content,post.author,post.date_posted])
     
 for x in posts2:
     pq.put(x)
