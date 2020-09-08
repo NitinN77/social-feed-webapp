@@ -37,14 +37,12 @@ while not pq.empty():
 
 def home(request):
     context = {
-        'posts':Post.objects.all().order_by('-value'),
         'posts2deq':posts2deq
     }
     return render(request, 'blog/home.html', context)
 
 def home1(request):
     context = {
-        'posts':Post.objects.all().order_by('-value'),
         'posts2deq':posts2rdeq
     }
     return render(request, 'blog/home.html', context)

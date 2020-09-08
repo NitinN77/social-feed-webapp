@@ -1,16 +1,18 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from textblob import TextBlob
 
 map = [""]
 
 def valcalc(s):
-    value = 0
-    spl = s.split(' ')
-    for x in spl:
-        if x=='xbox':
-            value+=1
-    return value
+    #value = 0
+    #spl = s.split(' ')
+    #for x in spl:
+    #    if x=='xbox':
+    #        value+=1
+    value = TextBlob(s).sentiment
+    return list(value)[0]
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
