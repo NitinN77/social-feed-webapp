@@ -82,3 +82,34 @@ body {
   .account-heading {
     font-size: 2.5rem;
   }
+
+
+  .box5{
+    border-style: solid; 
+    border-color:rgb(3, 99, 3); 
+    border-width: 2px;
+  }
+
+  .box4{
+    border-style: solid; 
+    border-color:rgb(140, 194, 59); 
+    border-width: 2px;
+  }
+
+  .box3{
+    border-style: solid; 
+    border-color:rgb(255, 187, 0); 
+    border-width: 2px;
+  }
+
+  .box2{
+    border-style: solid; 
+    border-color:rgb(206, 110, 21); 
+    border-width: 2px;
+  }
+
+  .box1{
+    border-style: solid; 
+    border-color:rgb(172, 29, 29); 
+    border-width: 2px;
+  }

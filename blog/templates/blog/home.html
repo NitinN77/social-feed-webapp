@@ -24,7 +24,8 @@
             -->
             
             {% for post in posts2deq%}
-            <article class="media content-section">
+            {% if post.0 < -0.6 %}
+            <article class="media content-section box5"> 
                 <div class="media-body">
                 <div class="article-metadata">
                     <a class="mr-2" href="#">by {{ post.3 }}</a>
@@ -35,6 +36,55 @@
                 <!--<p class="article-content">{{ post.0 }}</p>-->
                 </div>
             </article>
+            {% elif post.0 >= -0.6 and post.0 < -0.2 %}
+            <article class="media content-section box4"> 
+                <div class="media-body">
+                <div class="article-metadata">
+                    <a class="mr-2" href="#">by {{ post.3 }}</a>
+                    <small class="text-muted">{{ post.4 }}</small>
+                </div>
+                <h2><a class="article-title" href="#">{{ post.1 }}</a></h2>
+                <p class="article-content">{{ post.2 }}</p>
+                <!--<p class="article-content">{{ post.0 }}</p>-->
+                </div>
+            </article>
+            {% elif post.0 >= -0.2 and post.0 < 0.2 %}
+            <article class="media content-section box3"> 
+                <div class="media-body">
+                <div class="article-metadata">
+                    <a class="mr-2" href="#">by {{ post.3 }}</a>
+                    <small class="text-muted">{{ post.4 }}</small>
+                </div>
+                <h2><a class="article-title" href="#">{{ post.1 }}</a></h2>
+                <p class="article-content">{{ post.2 }}</p>
+                <!--<p class="article-content">{{ post.0 }}</p>-->
+                </div>
+            </article>
+            {% elif post.0 >= 0.2 and post.0 < 0.6 %}
+            <article class="media content-section box2"> 
+                <div class="media-body">
+                <div class="article-metadata">
+                    <a class="mr-2" href="#">by {{ post.3 }}</a>
+                    <small class="text-muted">{{ post.4 }}</small>
+                </div>
+                <h2><a class="article-title" href="#">{{ post.1 }}</a></h2>
+                <p class="article-content">{{ post.2 }}</p>
+                <!--<p class="article-content">{{ post.0 }}</p>-->
+                </div>
+            </article>
+            {% else %}
+            <article class="media content-section box1"> 
+                <div class="media-body">
+                <div class="article-metadata">
+                    <a class="mr-2" href="#">by {{ post.3 }}</a>
+                    <small class="text-muted">{{ post.4 }}</small>
+                </div>
+                <h2><a class="article-title" href="#">{{ post.1 }}</a></h2>
+                <p class="article-content">{{ post.2 }}</p>
+                <!--<p class="article-content">{{ post.0 }}</p>-->
+                </div>
+            </article>
+            {% endif %}
             {% endfor %}
             
         </div>

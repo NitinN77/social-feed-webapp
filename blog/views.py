@@ -36,7 +36,9 @@ def home1(request):
         pq.put(x)
     
     while not pq.empty():
-        posts2rdeq.append(pq.get())
+        get = pq.get()
+        get[0]=-get[0]
+        posts2rdeq.append(get)
 
     context = {
         'posts':Post.objects.all(),
