@@ -1,0 +1,24 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+    <h1 style="padding: 10px 0px 0px 0px">Analysis </h1>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <article class="media content-section"> 
+                    <div class="media-body">
+                    <h2>Most Frequent Words</h2>
+                    <p class="article-content">
+                        {% for word in panels %}
+                        "{{ word.0 }}" : {{ word.1 }} times
+                        {% endfor %}
+                    </p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+
