@@ -88,6 +88,6 @@ def analysis(request):
     panels = list(d1.items())
     panels.sort(key = lambda x: x[1],reverse=True)
     context = {
-        'panels':panels[:6],
+        'panels':panels[:5],
     }
     return render(request, 'blog/analysis.html',context)
