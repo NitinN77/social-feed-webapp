@@ -9,11 +9,31 @@
                 <article class="media content-section"> 
                     <div class="media-body">
                     <h2>Most Frequent Words</h2>
-                    <p class="article-content">
-                        {% for word in panels %}
-                        "{{ word.0 }}" : {{ word.1 }} times
-                        {% endfor %}
-                    </p>
+                    <br>
+                    <table class="table"> 
+                        <thead class="thead-light">
+                            {% for data in df %} 
+                                <th>{{ data }}</th> 
+                            {% endfor %} 
+                        </thead>
+                        <tbody>
+                            {% for _, record in df.iterrows %} 
+                                <tr> 
+                                    {% for value in record %} 
+                                        <td>{{ value }}</td> 
+                                    {% endfor %} 
+                                </tr> 
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    </div>
+                </article>
+            </div>
+            <div class="col-md-6">
+                <article class="media content-section"> 
+                    <div class="media-body">
+                        <h2>Rating Scale</h2>
+                        <img class="col-md-12" src="data:image/png;base64,{{ data }}" alt="">
                     </div>
                 </article>
             </div>

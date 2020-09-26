@@ -4,6 +4,9 @@ from django.views.generic import ListView,CreateView
 from .models import Post,valcalc
 from django.contrib.auth.models import User
 from textblob import TextBlob
+import pandas as pd
+import io,urllib,base64
+from matplotlib import pyplot as plt
 
 def home(request):
     pq=PriorityQueue()
@@ -69,13 +72,22 @@ def about(request):
 
 #analysis
 
-
-
-
 def analysis(request):
-
     l = []
+    t1 = [1, 2, 3, 4, 5]
+    t2 = [0, 0, 0, 0, 0]
     for post in Post.objects.all():
+        temp = -valcalc(post.content)
+        if temp < -0.6:
+            t2[4]+=1
+        elif temp >= -0.6 and temp < -0.2:
+            t2[3]+=1
+        elif temp >= -0.2 and temp < 0.2:
+            t2[2]+=1
+        elif temp >= 0.2 and temp < 0.6:
+            t2[1]+=1
+        elif temp > 0.6:
+            t2[0]+=1
         l.append(post.content)
     d1 = {}
     for post in l:
@@ -86,8 +98,19 @@ def analysis(request):
             else:
                 d1[x]=1
     panels = list(d1.items())
-    panels.sort(key = lambda x: x[1],reverse=True)
+    panels.sort(key = lambda x: x[1],reverse=True)    
+    df = pd.DataFrame(panels, columns=['Word', 'Occurences'])
+    plt.bar(t1,t2)
+    fig = plt.gcf()
+    buf = io.BytesIO()
+    fig.savefig(buf,format='png')
+    buf.seek(0)
+    string = base64.b64encode(buf.read())
+    uri = urllib.parse.quote(string)
     context = {
-        'panels':panels[:5],
+        'df':df.head(5),
+        'data':uri,
     }
+    plt.close()
     return render(request, 'blog/analysis.html',context)
+
