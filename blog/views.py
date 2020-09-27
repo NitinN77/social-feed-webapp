@@ -99,7 +99,7 @@ def analysis(request):
     for post in l:
         post = post.split(' ')
         for x in post:
-            x1 = x.lower()
+            x1 = x.lower().strip()
             if x1 in d1.keys() and list(TextBlob(x1).sentiment)[0]:
                 d1[x1]+=1
             else:
