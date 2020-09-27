@@ -101,6 +101,10 @@ def analysis(request):
                 d1[x]+=1
             else:
                 d1[x]=1
+                cx = x.lower()
+                anf = filter(str.isalnum, cx)
+                anf = "".join(anf)
+                x = anf
                 if list(TextBlob(x).sentiment)[0]:
                     hs.append((x,list(TextBlob(x).sentiment)[0]))
     
