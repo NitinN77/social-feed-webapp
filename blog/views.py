@@ -106,9 +106,8 @@ def analysis(request):
                 cx = x
                 anf = filter(str.isalnum, cx)
                 anf = "".join(anf)
-                x = anf
-                if list(TextBlob(x).sentiment)[0]:
-                    hs.append((x,list(TextBlob(x).sentiment)[0]))
+                if list(TextBlob(anf).sentiment)[0]:
+                    hs.append((anf,list(TextBlob(anf).sentiment)[0]))
     
     panels = list(d1.items())
     panels.sort(key = lambda x: x[1],reverse=True)    
