@@ -104,7 +104,7 @@ def analysis(request):
                 d1[x1]+=1
             else:
                 d1[x1]=1
-                cx = 1
+                cx = x1
                 anf = filter(str.isalnum, cx)
                 anf = "".join(anf)
                 if list(TextBlob(anf).sentiment)[0]:
