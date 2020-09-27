@@ -24,7 +24,6 @@ def home(request):
     
     while not pq.empty():
         posts2deq.append(pq.get())
-
     context = {
         'posts':Post.objects.all(),
         'posts2deq':posts2deq,
@@ -71,7 +70,10 @@ class PostCreateView(CreateView):
 
 
 def about(request):
-    return render(request, 'blog/about.html',{'title':'About'})
+    context = {
+        'title':'About',
+    }
+    return render(request, 'blog/about.html',context)
 
 #analysis
 
