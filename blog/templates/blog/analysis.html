@@ -1,7 +1,7 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
-    <h1 style="padding: 10px 0px 0px 0px">Analysis </h1>
+    <h1 style="padding: 10px 0px 0px 15px">Analysis </h1>
     <br>
     <div class="container">
         <div class="row">
@@ -34,6 +34,56 @@
                     <div class="media-body">
                         <h2>Rating Scale</h2>
                         <img class="col-md-12" src="data:image/png;base64,{{ data }}" alt="">
+                    </div>
+                </article>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <article class="media content-section"> 
+                    <div class="media-body">
+                    <h2>Most Positive Words</h2>
+                    <br>
+                    <table class="table"> 
+                        <thead class="thead-light">
+                            {% for data in df1 %} 
+                                <th>{{ data }}</th> 
+                            {% endfor %} 
+                        </thead>
+                        <tbody>
+                            {% for _, record in df1.iterrows %} 
+                                <tr> 
+                                    {% for value in record %} 
+                                        <td>{{ value }}</td> 
+                                    {% endfor %} 
+                                </tr> 
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    </div>
+                </article>
+            </div>
+            <div class="col-md-6">
+                <article class="media content-section"> 
+                    <div class="media-body">
+                    <h2>Most Negative Words</h2>
+                    <br>
+                    <table class="table"> 
+                        <thead class="thead-light">
+                            {% for data in df2 %} 
+                                <th>{{ data }}</th> 
+                            {% endfor %} 
+                        </thead>
+                        <tbody>
+                            {% for _, record in df2.iterrows %} 
+                                <tr> 
+                                    {% for value in record %} 
+                                        <td>{{ value }}</td> 
+                                    {% endfor %} 
+                                </tr> 
+                            {% endfor %}
+                        </tbody>
+                    </table>
                     </div>
                 </article>
             </div>

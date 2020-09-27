@@ -6,7 +6,10 @@ from django.contrib.auth.models import User
 from textblob import TextBlob
 import pandas as pd
 import io,urllib,base64
+import matplotlib
+matplotlib.use('Agg')
 from matplotlib import pyplot as plt
+
 
 def home(request):
     pq=PriorityQueue()
@@ -76,6 +79,7 @@ def analysis(request):
     l = []
     t1 = [1, 2, 3, 4, 5]
     t2 = [0, 0, 0, 0, 0]
+    hs = []
     for post in Post.objects.all():
         temp = -valcalc(post.content)
         if temp < -0.6:
@@ -97,22 +101,32 @@ def analysis(request):
                 d1[x]+=1
             else:
                 d1[x]=1
+                if list(TextBlob(x).sentiment)[0]:
+                    hs.append((x,list(TextBlob(x).sentiment)[0]))
+    
     panels = list(d1.items())
     panels.sort(key = lambda x: x[1],reverse=True)    
+    hs.sort(key = lambda x:x[1],reverse=True)
     df = pd.DataFrame(panels, columns=['Word', 'Occurences'])
+    df1 = pd.DataFrame(hs, columns=['Word','Polarity'])
+    hs.sort(key = lambda x:x[1])
+    df2 = pd.DataFrame(hs, columns=['Word','Polarity'])
     plt.bar(t1,t2,color=['maroon', 'darkorange', 'gold', 'greenyellow', 'green'])
     plt.xlabel("Review Tone")
     plt.ylabel("Count")
     fig = plt.gcf()
     buf = io.BytesIO()
     fig.savefig(buf,format='png')
+    plt.close()
     buf.seek(0)
     string = base64.b64encode(buf.read())
     uri = urllib.parse.quote(string)
     context = {
         'df':df.head(5),
         'data':uri,
+        'df1':df1.head(10),
+        'df2':df2.head(10),
     }
-    plt.close()
+    
     return render(request, 'blog/analysis.html',context)
 
