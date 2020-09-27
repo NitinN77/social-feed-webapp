@@ -19,7 +19,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['socialfeeddjango.herokuapp.com','127.0.0.1']
 
-SECRET_KEY = 'fbng4!*x_vd1u99t-1n=$ezq#&q6%ojvty5^(j$*uz%gl2yx@y'
 # Application definition
 
 INSTALLED_APPS = [
