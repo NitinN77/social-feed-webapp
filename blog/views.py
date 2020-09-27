@@ -99,11 +99,12 @@ def analysis(request):
     for post in l:
         post = post.split(' ')
         for x in post:
-            if x.lower() in d1.keys() and list(TextBlob(x).sentiment)[0]:
-                d1[x.lower()]+=1
+            x1 = x.lower()
+            if x1 in d1.keys() and list(TextBlob(x1).sentiment)[0]:
+                d1[x1]+=1
             else:
-                d1[x.lower()]=1
-                cx = x
+                d1[x1]=1
+                cx = 1
                 anf = filter(str.isalnum, cx)
                 anf = "".join(anf)
                 if list(TextBlob(anf).sentiment)[0]:
