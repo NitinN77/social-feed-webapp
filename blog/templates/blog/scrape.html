@@ -1,0 +1,28 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+    <h1 style="padding: 10px 0px 0px 0px">Scrape Mode </h1>
+    <br>
+    <div class="row">
+        <form method="POST">
+            {% csrf_token %}
+            URL: <input type="text" name="url">
+            <button type="submit">Scrape</button>
+        </form>
+    </div>
+    <br>
+    <div class="row">
+        
+        {% for review in r%}
+        <div class="col-md-8">
+            <div class="content-section">
+                <p>
+                    {{ review }}
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock content %}
+
+

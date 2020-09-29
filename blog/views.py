@@ -9,6 +9,8 @@ import io,urllib,base64
 import matplotlib
 matplotlib.use('Agg')
 from matplotlib import pyplot as plt
+from urllib.request import urlopen as uReq
+from bs4 import BeautifulSoup as soup
 
 
 def home(request):
@@ -136,3 +138,27 @@ def analysis(request):
     
     return render(request, 'blog/analysis.html',context)
 
+def scrape(request):
+    url = request.POST.get('url')
+    user = User.objects.filter(username='Nitin').first()
+    r = []
+    if url:
+        uClient = uReq(url)
+        page_html = uClient.read()
+        uClient.close()
+        page_soup = soup(page_html, "html.parser")
+
+        reviews = page_soup.findAll("div", {"class": "a-row a-spacing-small review-data"})
+        
+        for review in reviews:
+            res1 = review.text.strip()
+            r.append(res1)
+            ScrapedReview = Post(title='Scraped Review',content=res1,author=user,value=valcalc(res1))
+            ScrapedReview.save()
+        
+        
+    context = {
+        'title':'About',
+        'r':r
+    }
+    return render(request, 'blog/scrape.html',context)
