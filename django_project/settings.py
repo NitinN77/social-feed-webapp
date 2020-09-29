@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['socialfeeddjango.herokuapp.com','127.0.0.1']
 
-SECRET_KEY = 'fbng4!*x_vd1u99t-1n=$ezq#&q6%ojvty5^(j$*uz%gl2yx@y'
 # Application definition
 
 INSTALLED_APPS = [
