@@ -23,9 +23,11 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['socialfeeddjango.herokuapp.com','127.0.0.1']
+
+SECRET_KEY = 'fbng4!*x_vd1u99t-1n=$ezq#&q6%ojvty5^(j$*uz%gl2yx@y'
 
 # Application definition
 
