@@ -3,13 +3,23 @@
 {% block content %}
     <h1 style="padding: 10px 0px 0px 0px">Scrape Mode </h1>
     <br>
-    <div class="row">
+    <div class="row" style="padding: 0px 0px 0px 15px">
         <form method="POST">
-            {% csrf_token %}
-            URL: <input type="text" name="url">
-            <button type="submit">Scrape</button>
+            <div class="form-group">
+                {% csrf_token %}
+                <label for=""><b>URL: </b></label>
+                <input type="text" class="form-control" name="url">
+                <br>
+                <button class="btn btn-primary" type="submit">Scrape</button>
+            </div>
         </form>
     </div>
+    <br>
+    {% if r %}
+    <p>
+        <b>The following reviews were successfully scraped and added to feed.</b>
+    </p>
+    {% endif %}
     <br>
     <div class="row">
         
