@@ -2,54 +2,65 @@
 {% load static %} 
 
 {% block content %}
-    <h1 style="padding: 10px 0px 0px 0px">Scrape Mode </h1>
-    <br>
-    <div class="content-section">
-        <div class="row" style="padding: 0px 0px 0px 15px">
-            <form method="POST">
-                <div class="form-group">
-                    {% csrf_token %}
-                    <label for=""><b>URL: </b></label>
-                    <input type="text" class="form-control" name="url">
-                    <br>
-                    <button class="btn btn-primary" type="submit">Scrape</button>
-                </div>
-            </form>
-        </div>
-        <br>
-        {% if r %}
-        <p>
-            <b>The following reviews were successfully scraped and added to feed.</b>
-        </p>
-        {% else %}
-        <ol type="1" style="padding: 0px 0px 0px 15px">
-            <b>
-            <li>Open a product's page in Amazon.in</li>
-            <br>
-            <li>Scroll down and click on See all reviews.</li>
-            <br>
-            <img src="https://i.imgur.com/WLt2bjO.png" alt="" height="100" width="350">
-            <br>
-            <br>
-            <li>Copy the URL and paste it in the input field above.</li>
-            <br>
-            <li>Click on Scrape and check the home page.</li>
-            </b>
-        </ol>
-        {% endif %}
-    </div>
-    <br>
     <div class="row">
-        {% for review in r%}
-        <div class="col-md-8">
-            <div class="content-section">
-                <p>
-                    {{ review }}
-                </p>
+        <div class="col-12">
+            <div class="card" style="padding: 10px 0px 0px 0px">
+                <h1 class="card-header bg-steel text-white">Scrape Mode </h1>
+                <div class="card-body">
+                    
+                        <div class="row" style="padding: 0px 0px 0px 15px">
+                            <form method="POST">
+                                <div class="form-group">
+                                    {% csrf_token %}
+                                    <label for=""><b>URL: </b></label>
+                                    <input type="text" class="form-control" name="url">
+                                    <br>
+                                    <button class="btn btn-primary" type="submit">Scrape</button>
+                                </div>
+                            </form>
+                        </div>
+                        <br>
+                        {% if r %}
+                        <p>
+                            <b>The following reviews were successfully scraped and added to feed.</b>
+                        </p>
+                        {% else %}
+                        <div class="content-section">
+                            <ol type="1" style="padding: 0px 0px 0px 15px">
+                            
+                                <li>Open a product's page in Amazon.in</li>
+                                <br>
+                                <li>Scroll down and click on See all reviews.</li>
+                                <br>
+                                <img src="https://i.imgur.com/WLt2bjO.png" alt="" height="100" width="350" style="border: 2px solid #555;">
+                                <br>
+                                <br>
+                                <li>Copy the URL and paste it in the input field above.</li>
+                                <br>
+                                <li>Click on Scrape and check the home page.</li>
+                        
+                            </ol>
+                        </div>
+                        
+                        {% endif %}
+                    </div>
+                    <br>
+                    <div class="row">
+                        {% for review in r%}
+                        <div class="col-md-8">
+                            <div class="content-section">
+                                <p>
+                                    {{ review }}
+                                </p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                
+                </div>
             </div>
         </div>
-        {% endfor %}
     </div>
+    
 {% endblock content %}
 
 

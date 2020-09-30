@@ -3,13 +3,13 @@
 {% block content %}
     <h1 style="padding: 10px 0px 0px 15px">Analysis </h1>
     <br>
-    <div class="container">
-        <div class="row">
+    <div class="content-section">
+        <div class="row" style="padding: 10px 0px 0px 0px">
             <div class="col-md-6">
-                <article class="media content-section"> 
-                    <div class="media-body">
-                    <h2>Top 5 Most Frequent Words</h2>
+                <div class="card"> 
+                    <h2 class="card-header bg-steel text-white">Top 5 Most Frequent Words</h2>
                     <br>
+                    <div class="card-body">
                     <table class="table"> 
                         <thead class="thead-light">
                             {% for data in df %} 
@@ -27,23 +27,23 @@
                         </tbody>
                     </table>
                     </div>
-                </article>
+                </div>
             </div>
             <div class="col-md-6">
-                <article class="media content-section"> 
-                    <div class="media-body">
-                        <h2>Rating Scale</h2>
+                <div class="card"> 
+                    <h2 class="card-header bg-steel text-white">Rating Scale</h2>
+                    <div class="card-body">
                         <img class="col-md-12" src="data:image/png;base64,{{ data }}" alt="">
                     </div>
-                </article>
+                </div>
             </div>
         </div>
-        <div class="row">
+        <br>
+        <div class="row" style="padding: 0px 0px 10px 0px">
             <div class="col-md-6">
-                <article class="media content-section"> 
-                    <div class="media-body">
-                    <h2>Top 10 Positive Words</h2>
-                    <br>
+                <div class="card"> 
+                    <h2 class="card-header bg-steel text-white">Top 10 Positive Words</h2>
+                    <div class="card-body">
                     <table class="table"> 
                         <thead class="thead-light">
                             {% for data in df1 %} 
@@ -61,13 +61,12 @@
                         </tbody>
                     </table>
                     </div>
-                </article>
+                </div>
             </div>
             <div class="col-md-6">
-                <article class="media content-section"> 
-                    <div class="media-body">
-                    <h2>Top 10 Negative Words</h2>
-                    <br>
+                <div class="card"> 
+                    <h2 class="card-header bg-steel text-white">Top 10 Negative Words</h2>
+                    <div class="card-body">
                     <table class="table"> 
                         <thead class="thead-light">
                             {% for data in df2 %} 
@@ -85,7 +84,7 @@
                         </tbody>
                     </table>
                     </div>
-                </article>
+                </div>
             </div>
         </div>
     </div>

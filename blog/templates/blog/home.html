@@ -90,21 +90,28 @@
         </div>
 
         <div class="col-sm-3">
-            <div class="content-section">
-              <h3>Sort Methods</h3>
-                <ul class="list-group">
-                  <li class="list-group-item list-group-item-light"><a href="{% url 'blog-home' %}"><i class="fa fa-smile-o"></i> Sort By Positive First</a></li>
-                  <li class="list-group-item list-group-item-light"><a href="{% url 'blog-home1' %}"><i class="fa fa-meh-o"></i> Sort By Critical First</a></li>
-                </ul>
+            <div class="card">
+              <h3 class="card-header bg-steel text-white">Sort Methods</h3>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-light"><a href="{% url 'blog-home' %}"><i class="fa fa-smile-o"></i> Sort By Positive First</a></li>
+                        <li class="list-group-item list-group-item-light"><a href="{% url 'blog-home1' %}"><i class="fa fa-meh-o"></i> Sort By Critical First</a></li>
+                      </ul>
+                </div>
               </p>
             </div>
-            <div class="content-section">
-                <h3>New here?</h3>
-                <p>
-                    Register or Log in to create posts and 
-                    don't forget to check out the Analysis page.
-                </p>
+            <div style="padding: 15px 0px 0px 0px;">
+                <div class="card">
+                    <h3 class="card-header bg-steel text-white">New here?</h3>
+                    <div class="card-body">
+                        <p>
+                            Register or Log in to create posts and 
+                            don't forget to check out the Analysis page.
+                        </p>
+                    </div>
+                </div>
             </div>
+            
         </div>
         
     </div>
