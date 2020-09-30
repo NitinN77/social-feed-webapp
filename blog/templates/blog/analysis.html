@@ -1,13 +1,18 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
-    <h1 style="padding: 10px 0px 0px 15px">Analysis </h1>
     <br>
+    <div class="content-section" style=" background-color: #343a40;">
+        <center>
+            <h1 style="padding: 10px 0px 0px 15px; color:white">Analysis </h1>
+        </center>
+        
+    </div>
     <div class="content-section">
         <div class="row" style="padding: 10px 0px 0px 0px">
             <div class="col-md-6">
                 <div class="card"> 
-                    <h2 class="card-header bg-steel text-white">Top 5 Most Frequent Words</h2>
+                    <h3 class="card-header text-white" style="background-color: #343a40;">Top 5 Most Frequent Words</h3>
                     <br>
                     <div class="card-body">
                     <table class="table"> 
@@ -31,7 +36,7 @@
             </div>
             <div class="col-md-6">
                 <div class="card"> 
-                    <h2 class="card-header bg-steel text-white">Rating Scale</h2>
+                    <h3 class="card-header text-white" style="background-color: #343a40;">Rating Scale</h3>
                     <div class="card-body">
                         <img class="col-md-12" src="data:image/png;base64,{{ data }}" alt="">
                     </div>
@@ -42,7 +47,7 @@
         <div class="row" style="padding: 0px 0px 10px 0px">
             <div class="col-md-6">
                 <div class="card"> 
-                    <h2 class="card-header bg-steel text-white">Top 10 Positive Words</h2>
+                    <h3 class="card-header text-white" style="background-color: #343a40;">Top 10 Positive Words</h3>
                     <div class="card-body">
                     <table class="table"> 
                         <thead class="thead-light">
@@ -65,7 +70,7 @@
             </div>
             <div class="col-md-6">
                 <div class="card"> 
-                    <h2 class="card-header bg-steel text-white">Top 10 Negative Words</h2>
+                    <h3 class="card-header text-white" style="background-color: #343a40;">Top 10 Negative Words</h3>
                     <div class="card-body">
                     <table class="table"> 
                         <thead class="thead-light">
