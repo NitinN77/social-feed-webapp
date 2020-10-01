@@ -5,90 +5,65 @@
     
     <div class="row" style="padding: 10px 0px 0px 0px;">
             <div class="col-md-8">
-            <!--
-            {% for post in posts%}
-                <article class="media content-section">
-                    <div class="media-body">
-                    <div class="article-metadata">
-                        <a class="mr-2" href="#">{{ post.author }}</a>
-                        <small class="text-muted">{{ post.date_posted|date:"d F, Y" }}</small>
-                    </div>
-                    <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
-                    <p class="article-content">{{ post.content }}</p>
-                    <p class="article-content">{{ post.value }}</p>
-                    </div>
-                </article>
-            {% endfor %}
-            <p>Posts2: </p>
-            -->
-            
             {% for post in posts2deq %}
-            {% if post.0 == 200 or post.0 == -200 %}
-            <div class="content-section">
-            <h1>{{ post.1 }}</h1>
-            </div>
-            {% endif %}
-            {% endfor %}
-
-            {% for post in posts2deq%}
-            {% if post.0 < -0.6 and post.2 %}
+            {% if post.0 < -0.6 %}
             <article class="media content-section box5"> 
                 <div class="media-body">
                 <div class="article-metadata">
                     <a class="mr-2" href="#">by {{ post.3 }}</a>
                     <small class="text-muted">{{ post.4 }}</small>
                 </div>
-                <h2><a class="article-title" href="#">{{ post.1 }}</a></h2>
+                <h2><p class="article-title">{{ post.1 }}</p></h2>
                 <p class="article-content">{{ post.2 }}</p>
                 <!--<p class="article-content">{{ post.0 }}</p>-->
                 </div>
             </article>
-            {% elif post.0 >= -0.6 and post.0 < -0.2 and post.2 %} 
+            {% elif post.0 >= -0.6 and post.0 < -0.2  %} 
             <article class="media content-section box4"> 
                 <div class="media-body">
                 <div class="article-metadata">
                     <a class="mr-2" href="#">by {{ post.3 }}</a>
                     <small class="text-muted">{{ post.4 }}</small>
                 </div>
-                <h2><a class="article-title" href="#">{{ post.1 }}</a></h2>
+                <h2><p class="article-title">{{ post.1 }}</p></h2>
                 <p class="article-content">{{ post.2 }}</p>
                 <!--<p class="article-content">{{ post.0 }}</p>-->
                 </div>
             </article>
-            {% elif post.0 >= -0.2 and post.0 < 0.2 and post.2 %} 
+            {% elif post.0 >= -0.2 and post.0 < 0.2  %} 
             <article class="media content-section box3"> 
                 <div class="media-body">
                 <div class="article-metadata">
                     <a class="mr-2" href="#">by {{ post.3 }}</a>
                     <small class="text-muted">{{ post.4 }}</small>
                 </div>
-                <h2><a class="article-title" href="#">{{ post.1 }}</a></h2>
+                <h2><p class="article-title">{{ post.1 }}</p></h2>
                 <p class="article-content">{{ post.2 }}</p>
                 <!--<p class="article-content">{{ post.0 }}</p>-->
                 </div>
             </article>
-            {% elif post.0 >= 0.2 and post.0 < 0.6 and post.2 %}
+            {% elif post.0 >= 0.2 and post.0 < 0.6 %}
             <article class="media content-section box2"> 
                 <div class="media-body">
                 <div class="article-metadata">
                     <a class="mr-2" href="#">by {{ post.3 }}</a>
                     <small class="text-muted">{{ post.4 }}</small>
                 </div>
-                <h2><a class="article-title" href="#">{{ post.1 }}</a></h2>
+                <h2><p class="article-title">{{ post.1 }}</p></h2>
                 <p class="article-content">{{ post.2 }}</p>
                 <!--<p class="article-content">{{ post.0 }}</p>-->
                 </div>
             </article>
-            {% elif post.2 %}
+            {% else %}
             <article class="media content-section box1"> 
                 <div class="media-body">
                 <div class="article-metadata">
                     <a class="mr-2" href="#">by {{ post.3 }}</a>
                     <small class="text-muted">{{ post.4 }}</small>
                 </div>
-                <h2><a class="article-title" href="#">{{ post.1 }}</a></h2>
+                <h2><p class="article-title">{{ post.1 }}</p></h2>
                 <p class="article-content">{{ post.2 }}</p>
-                <p class="article-content">{{ post.0 }}</p>
+                <!--<p class="article-content">{{ post.0 }}</p>-->
                 </div>
             </article>
             {% endif %}
@@ -101,8 +76,8 @@
               <h3 class="card-header text-white" style="background-color: #343a40;">Sort Methods</h3>
                 <div class="card-body">
                     <ul class="list-group">
-                        <li class="list-group-item list-group-item-light"><a href="{% url 'blog-home' %}"><i class="fa fa-smile-o"></i> Sort By Positive First</a></li>
-                        <li class="list-group-item list-group-item-light"><a href="{% url 'blog-home1' %}"><i class="fa fa-meh-o"></i> Sort By Critical First</a></li>
+                        <li class="list-group-item list-group-item-light"><a href="{% url 'blog-home' %}"><i class="fa fa-smile-o"></i> Positive Posts First</a></li>
+                        <li class="list-group-item list-group-item-light"><a href="{% url 'blog-home1' %}"><i class="fa fa-meh-o"></i> Critical Posts First</a></li>
                       </ul>
                 </div>
               </p>

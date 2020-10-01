@@ -29,19 +29,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarToggle">
                   <div class="navbar-nav mr-auto">
-                    <a class="nav-item nav-link" href="{% url 'blog-home' %}"><i class="fa fa-home"></i> Home</a>
-                    <a class="nav-item nav-link" href="{% url 'blog-analysis' %}"><i class="fa fa-search"></i> Analysis</a>
-                    <a class="nav-item nav-link" href="{% url 'blog-scrape' %}"><i class="fa fa-arrow-down"></i> Scrape Mode</a>
-                    <a class="nav-item nav-link" href="{% url 'blog-about' %}"><i class="fa fa-info-circle"></i> About</a>
+        
                   </div>
                   <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="{% url 'post-create' %}"><i class="fa fa-pencil"></i> New Post</a>
-                    {% if user.is_authenticated %}
-                    <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
-                    {% else %}
-                    <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
-                    <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
-                    {% endif %}
                   </div>
                 </div>
               </div>

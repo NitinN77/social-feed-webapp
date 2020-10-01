@@ -7,6 +7,7 @@ from textblob import TextBlob
 import pandas as pd
 import io,urllib,base64
 import matplotlib
+import statistics
 matplotlib.use('Agg')
 from matplotlib import pyplot as plt
 from urllib.request import urlopen as uReq
@@ -19,11 +20,8 @@ def home(request):
     posts2deq = []
 
     for post in Post.objects.all():
-        if post.content:
-            posts2.append([-valcalc(post.content)-valcalc(post.title),post.title,post.content,post.author,post.date_posted])
-        else:
-            posts2.append([200,post.title,post.content,post.author,post.date_posted])
-
+        posts2.append([-valcalc(post.content)-valcalc(post.title),post.title,post.content,post.author,post.date_posted])
+            
     for x in posts2:
         pq.put(x)
     
@@ -41,10 +39,7 @@ def home1(request):
     posts2rdeq = []
 
     for post in Post.objects.all():
-        if post.content:
-            posts2r.append([valcalc(post.content)+valcalc(post.title),post.title,post.content,post.author,post.date_posted])
-        else:
-            posts2r.append([200,post.title,post.content,post.author,post.date_posted])
+        posts2r.append([valcalc(post.content)+valcalc(post.title),post.title,post.content,post.author,post.date_posted])
         
     for x in posts2r:
         pq.put(x)
@@ -90,8 +85,10 @@ def analysis(request):
     t1 = [1, 2, 3, 4, 5]
     t2 = [0, 0, 0, 0, 0]
     hs = []
+    values = []
     for post in Post.objects.all():
         temp = -valcalc(post.content)
+        values.append(temp)
         if temp < -0.6:
             t2[4]+=1
         elif temp >= -0.6 and temp < -0.2:
@@ -115,7 +112,7 @@ def analysis(request):
                 cx = x1
                 anf = filter(str.isalnum, cx)
                 anf = "".join(anf)
-                if list(TextBlob(anf).sentiment)[0]:
+                if  list(TextBlob(anf).sentiment)[0]:
                     hs.append((anf,list(TextBlob(anf).sentiment)[0]))
     
     panels = list(d1.items())
@@ -140,25 +137,17 @@ def analysis(request):
         'data':uri,
         'df1':df1.head(10),
         'df2':df2.head(10),
+        'mean':statistics.mean(values),
+        'var':statistics.variance(values),
     }
     
     return render(request, 'blog/analysis.html',context)
 
 def scrape(request):
     url = request.POST.get('url')
-    s1 = ''
-    user = User.objects.filter(username='Nitin').first()
     r = []
     r1 = []
     if url:
-        for i in range(len(url)-3):
-            s = url[i:i+3]
-            if s=='in/':
-                j = i+3
-                while url[j]!='/':
-                    s1 += url[j]
-                    j+=1
-                break
         uClient = uReq(url)
         page_html = uClient.read()
         uClient.close()
@@ -172,12 +161,8 @@ def scrape(request):
             res2 = review_titles[i].text.strip()
             r.append(res1)
             r1.append(res2)
-            ScrapedReview = Post(title=res2,content=res1,author=user,value=valcalc(res1)+valcalc(res2))
+            ScrapedReview = Post(title=res2,content=res1,author=request.user,value=valcalc(res1)+valcalc(res2))
             ScrapedReview.save()
-
-        titlepost = Post(title=s1,content='',author=user,value=200)
-        titlepost.save()
-        
     
     context = {
         'title':'About',

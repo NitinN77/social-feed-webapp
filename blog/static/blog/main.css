@@ -1,7 +1,10 @@
-body {
+  body {
     background: #fafafa;
     color: #333333;
     margin-top: 5rem;
+    background-image: url('https://wallpapershome.com/images/pages/pic_h/21252.jpg'); 
+    background-repeat: no-repeat; 
+    background-attachment: fixed;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -87,29 +90,29 @@ body {
   .box5{
     border-style: solid; 
     border-color:rgb(3, 99, 3); 
-    border-width: 2px;
+    border-width: 3px;
   }
 
   .box4{
     border-style: solid; 
     border-color:rgb(140, 194, 59); 
-    border-width: 2px;
+    border-width: 3px;
   }
 
   .box3{
     border-style: solid; 
     border-color:rgb(255, 187, 0); 
-    border-width: 2px;
+    border-width: 3px;
   }
 
   .box2{
     border-style: solid; 
     border-color:rgb(206, 110, 21); 
-    border-width: 2px;
+    border-width: 3px;
   }
 
   .box1{
     border-style: solid; 
     border-color:rgb(172, 29, 29); 
-    border-width: 2px;
+    border-width: 3px;
   }
