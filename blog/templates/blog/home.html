@@ -4,7 +4,6 @@
     
     
     <div class="row" style="padding: 10px 0px 0px 0px;">
-            
             <div class="col-md-8">
             <!--
             {% for post in posts%}
@@ -23,8 +22,16 @@
             <p>Posts2: </p>
             -->
             
+            {% for post in posts2deq %}
+            {% if post.0 == 200 or post.0 == -200 %}
+            <div class="content-section">
+            <h1>{{ post.1 }}</h1>
+            </div>
+            {% endif %}
+            {% endfor %}
+
             {% for post in posts2deq%}
-            {% if post.0 < -0.6 %}
+            {% if post.0 < -0.6 and post.2 %}
             <article class="media content-section box5"> 
                 <div class="media-body">
                 <div class="article-metadata">
@@ -36,7 +43,7 @@
                 <!--<p class="article-content">{{ post.0 }}</p>-->
                 </div>
             </article>
-            {% elif post.0 >= -0.6 and post.0 < -0.2 %}
+            {% elif post.0 >= -0.6 and post.0 < -0.2 and post.2 %} 
             <article class="media content-section box4"> 
                 <div class="media-body">
                 <div class="article-metadata">
@@ -48,7 +55,7 @@
                 <!--<p class="article-content">{{ post.0 }}</p>-->
                 </div>
             </article>
-            {% elif post.0 >= -0.2 and post.0 < 0.2 %}
+            {% elif post.0 >= -0.2 and post.0 < 0.2 and post.2 %} 
             <article class="media content-section box3"> 
                 <div class="media-body">
                 <div class="article-metadata">
@@ -60,7 +67,7 @@
                 <!--<p class="article-content">{{ post.0 }}</p>-->
                 </div>
             </article>
-            {% elif post.0 >= 0.2 and post.0 < 0.6 %}
+            {% elif post.0 >= 0.2 and post.0 < 0.6 and post.2 %}
             <article class="media content-section box2"> 
                 <div class="media-body">
                 <div class="article-metadata">
@@ -81,7 +88,7 @@
                 </div>
                 <h2><a class="article-title" href="#">{{ post.1 }}</a></h2>
                 <p class="article-content">{{ post.2 }}</p>
-                <!--<p class="article-content">{{ post.0 }}</p>-->
+                <p class="article-content">{{ post.0 }}</p>
                 </div>
             </article>
             {% endif %}

@@ -19,7 +19,10 @@ def home(request):
     posts2deq = []
 
     for post in Post.objects.all():
-        posts2.append([-valcalc(post.content),post.title,post.content,post.author,post.date_posted])
+        if post.content:
+            posts2.append([-valcalc(post.content)-valcalc(post.title),post.title,post.content,post.author,post.date_posted])
+        else:
+            posts2.append([200,post.title,post.content,post.author,post.date_posted])
 
     for x in posts2:
         pq.put(x)
@@ -38,8 +41,11 @@ def home1(request):
     posts2rdeq = []
 
     for post in Post.objects.all():
-        posts2r.append([valcalc(post.content),post.title,post.content,post.author,post.date_posted])
-
+        if post.content:
+            posts2r.append([valcalc(post.content)+valcalc(post.title),post.title,post.content,post.author,post.date_posted])
+        else:
+            posts2r.append([200,post.title,post.content,post.author,post.date_posted])
+        
     for x in posts2r:
         pq.put(x)
     
@@ -140,25 +146,41 @@ def analysis(request):
 
 def scrape(request):
     url = request.POST.get('url')
+    s1 = ''
     user = User.objects.filter(username='Nitin').first()
     r = []
+    r1 = []
     if url:
+        for i in range(len(url)-3):
+            s = url[i:i+3]
+            if s=='in/':
+                j = i+3
+                while url[j]!='/':
+                    s1 += url[j]
+                    j+=1
+                break
         uClient = uReq(url)
         page_html = uClient.read()
         uClient.close()
         page_soup = soup(page_html, "html.parser")
 
         reviews = page_soup.findAll("div", {"class": "a-row a-spacing-small review-data"})
-        
-        for review in reviews:
-            res1 = review.text.strip()
+        review_titles = page_soup.findAll("a", {"class": "a-size-base a-link-normal review-title a-color-base review-title-content a-text-bold"})
+
+        for i in range(len(reviews)):
+            res1 = reviews[i].text.strip()
+            res2 = review_titles[i].text.strip()
             r.append(res1)
-            ScrapedReview = Post(title='Scraped Review',content=res1,author=user,value=valcalc(res1))
+            r1.append(res2)
+            ScrapedReview = Post(title=res2,content=res1,author=user,value=valcalc(res1)+valcalc(res2))
             ScrapedReview.save()
+
+        titlepost = Post(title=s1,content='',author=user,value=200)
+        titlepost.save()
         
-        
+    
     context = {
         'title':'About',
-        'r':r
+        'r':r,
     }
     return render(request, 'blog/scrape.html',context)
