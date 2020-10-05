@@ -1,7 +1,22 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
-    <h1 style="padding: 10px 0px 0px 0px">About </h1>
+    <div class="row">
+        <div class="col-md-12">
+            <br>
+            <div class="card">
+                <h2 class="card-header text-white" style="background-color: #343a40;">About</h2>
+                <div class="card-body">
+                    <strong>
+                    A web application built using Django featuring a dynamic post feed which utilizes sentiment analysis. A user can register with an account to make/view posts or
+                    provide an amazon (.in) reviews page URL to be scraped for posts automatically . The feed features two sorting mechanisms which order current posts in the feed by the total sentiment (polarity) 
+                    value of a post in ascending or descending. The sorting is performed internally with the help of priority queues. Posts are divided into five ranks based on the calculated value. The web app also features 
+                    an analytics page that displays tabulated and graphical information about the posts.
+                    </strong>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock content %}
 
 
