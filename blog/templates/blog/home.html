@@ -5,7 +5,9 @@
     
     <div class="row" style="padding: 10px 0px 0px 0px;">
             <div class="col-md-8">
+            
             {% for post in posts2deq %}
+            
             {% if post.0 < -0.6 %}
             <article class="media content-section box5"> 
                 <div class="media-body">
@@ -13,7 +15,7 @@
                     <a class="mr-2" href="#">by {{ post.3 }}</a>
                     <small class="text-muted">{{ post.4 }}</small>
                 </div>
-                <h2><p class="article-title">{{ post.1 }}</p></h2>
+                <h2><a data-toggle="modal" data-target="#Modal{{ post.5 }}" class="article-title" href="#">{{ post.1 }}</a></h2>
                 <p class="article-content">{{ post.2 }}</p>
                 <!--<p class="article-content">{{ post.0 }}</p>-->
                 </div>
@@ -25,7 +27,7 @@
                     <a class="mr-2" href="#">by {{ post.3 }}</a>
                     <small class="text-muted">{{ post.4 }}</small>
                 </div>
-                <h2><p class="article-title">{{ post.1 }}</p></h2>
+                <h2><a data-toggle="modal" data-target="#Modal{{ post.5 }}" class="article-title" href="#">{{ post.1 }}</a></h2>
                 <p class="article-content">{{ post.2 }}</p>
                 <!--<p class="article-content">{{ post.0 }}</p>-->
                 </div>
@@ -37,7 +39,7 @@
                     <a class="mr-2" href="#">by {{ post.3 }}</a>
                     <small class="text-muted">{{ post.4 }}</small>
                 </div>
-                <h2><p class="article-title">{{ post.1 }}</p></h2>
+                <h2><a data-toggle="modal" data-target="#Modal{{ post.5 }}" class="article-title" href="#">{{ post.1 }}</a></h2>
                 <p class="article-content">{{ post.2 }}</p>
                 <!--<p class="article-content">{{ post.0 }}</p>-->
                 </div>
@@ -49,7 +51,7 @@
                     <a class="mr-2" href="#">by {{ post.3 }}</a>
                     <small class="text-muted">{{ post.4 }}</small>
                 </div>
-                <h2><p class="article-title">{{ post.1 }}</p></h2>
+                <h2><a data-toggle="modal" data-target="#Modal{{ post.5 }}" class="article-title" href="#">{{ post.1 }}</a></h2>
                 <p class="article-content">{{ post.2 }}</p>
                 <!--<p class="article-content">{{ post.0 }}</p>-->
                 </div>
@@ -61,15 +63,35 @@
                     <a class="mr-2" href="#">by {{ post.3 }}</a>
                     <small class="text-muted">{{ post.4 }}</small>
                 </div>
-                <h2><p class="article-title">{{ post.1 }}</p></h2>
+                <h2><a data-toggle="modal" data-target="#Modal{{ post.5 }}" class="article-title" href="#">{{ post.1 }}</a></h2>
                 <p class="article-content">{{ post.2 }}</p>
                 <!--<p class="article-content">{{ post.0 }}</p>-->
                 </div>
             </article>
             {% endif %}
+            <div id="Modal{{ post.5 }}" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-lg" role="content">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title">{{ post.1 }}</h2>
+                            <button type="button" class="close" data-dismiss="modal">
+                                &times;
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>{{ post.2 }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
             {% endfor %}
             
+           
+            
+            
         </div>
+
+        
 
         <div class="col-sm-3">
             <div class="card">

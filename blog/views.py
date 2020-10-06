@@ -13,6 +13,12 @@ from matplotlib import pyplot as plt
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 
+def clean(s):
+    cx = s
+    anf = filter(str.isalnum, cx)
+    anf = "".join(anf)
+    return anf
+
 
 def home(request):
     pq=PriorityQueue()
@@ -20,8 +26,9 @@ def home(request):
     posts2deq = []
 
     for post in Post.objects.all():
-        posts2.append([-valcalc(post.content)-valcalc(post.title),post.title,post.content,post.author,post.date_posted])
-            
+        posts2.append([-valcalc(post.content)-valcalc(post.title),post.title,post.content,post.author,post.date_posted,clean(post.title)])
+        print(clean(post.title))    
+
     for x in posts2:
         pq.put(x)
     
@@ -39,7 +46,7 @@ def home1(request):
     posts2rdeq = []
 
     for post in Post.objects.all():
-        posts2r.append([valcalc(post.content)+valcalc(post.title),post.title,post.content,post.author,post.date_posted])
+        posts2r.append([valcalc(post.content)+valcalc(post.title),post.title,post.content,post.author,post.date_posted,clean(post.title)])
         
     for x in posts2r:
         pq.put(x)
