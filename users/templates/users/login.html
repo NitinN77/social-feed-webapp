@@ -3,8 +3,40 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <div class="row" style="padding: 15px 0px 0px 0px;">
-        <div class="col-md-4 offset-md-8">
+    <div class="row" style="padding: 10px 0px 0px 0px;">
+        <div class="col-md-8">
+            <div id="mycarousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h2 style="color: white;">Dynamic Feed</h2>
+                        </div> 
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h2 style="color: white;">Quick Analysis</h2>
+                        </div> 
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h2 style="color: white;">Auto Scrape for Simulation</h2>
+                        </div>
+                    </div>
+                </div>  
+                <ol class="carousel-indicators">
+                    <li data-target="#mycarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#mycarousel" data-slide-to="1"></li>
+                    <li data-target="#mycarousel" data-slide-to="2"></li>
+                </ol>
+                <a class="carousel-control-prev" href="#mycarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#mycarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4">
             <div class="content-section">
                 <form method="POST">
                     {% csrf_token %}
@@ -22,10 +54,10 @@
                         Need an account? <a class="ml-2" href="{% url 'register' %}">Sign Up</a>
                     </small>
                 </div>
-        
             </div>
         </div>
     </div>
+    
     
 {% endblock content %}
 
