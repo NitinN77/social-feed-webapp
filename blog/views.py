@@ -92,10 +92,14 @@ def analysis(request):
     t1 = [1, 2, 3, 4, 5]
     t2 = [0, 0, 0, 0, 0]
     hs = []
-    values = []
+    pvalues = []
+    
+    svalues = []
     for post in Post.objects.all():
-        temp = -valcalc(post.content)
-        values.append(temp)
+        temp = list(TextBlob(post.content).sentiment)[0]
+        temp2 = list(TextBlob(post.content).sentiment)[1]
+        pvalues.append(temp)
+        svalues.append(temp2)
         if temp < -0.6:
             t2[4]+=1
         elif temp >= -0.6 and temp < -0.2:
@@ -108,6 +112,7 @@ def analysis(request):
             t2[0]+=1
         l.append(post.content)
     d1 = {}
+    pl = list(range(1,len(pvalues)+1))
     for post in l:
         post = post.split(' ')
         for x in post:
@@ -129,23 +134,19 @@ def analysis(request):
     df1 = pd.DataFrame(hs, columns=['Word','Polarity'])
     hs.sort(key = lambda x:x[1])
     df2 = pd.DataFrame(hs, columns=['Word','Polarity'])
-    plt.bar(t1,t2,color=['maroon', 'darkorange', 'gold', 'greenyellow', 'green'])
-    plt.xlabel("Review Tone")
-    plt.ylabel("Count")
-    fig = plt.gcf()
-    buf = io.BytesIO()
-    fig.savefig(buf,format='png')
-    plt.close()
-    buf.seek(0)
-    string = base64.b64encode(buf.read())
-    uri = urllib.parse.quote(string)
     context = {
         'df':df.head(5),
-        'data':uri,
         'df1':df1.head(10),
         'df2':df2.head(10),
-        'mean':statistics.mean(values),
-        'var':statistics.variance(values),
+        'pmean':statistics.mean(pvalues),
+        'pvar':statistics.variance(pvalues),
+        'smean':statistics.mean(svalues),
+        'svar':statistics.variance(svalues),
+        't1':t1,
+        't2':t2,
+        'pvalues':pvalues,
+        'svalues':svalues,
+        'pl':pl,
     }
     
     return render(request, 'blog/analysis.html',context)

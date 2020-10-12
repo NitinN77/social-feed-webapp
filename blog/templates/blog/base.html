@@ -66,5 +66,58 @@
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-    </body>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>  
+        <script>
+          Chart.defaults.global.legend.display = false;
+          var ctx = document.getElementById('myChart').getContext('2d');
+          var chart = new Chart(ctx, {
+          type: 'bar',
+
+          data: {
+              labels: {{ t1 }},
+              datasets: [{
+                  label: 'Rating Scale',
+                  backgroundColor: ['rgb(227, 47, 27,0.4)', 'rgb(237, 159, 14,0.4)', 'rgb(245, 241, 24,0.4)',
+                   'rgb(86, 209, 77,0.4)', 'rgb(1, 112, 31,0.4)'],
+                  borderColor: ['rgb(227, 47, 27)', 'rgb(237, 159, 14)', 'rgb(245, 241, 24)',
+                   'rgb(86, 209, 77)', 'rgb(1, 112, 31)'],
+                  borderWidth: 2,
+                  data: {{ t2 }}, 
+                  
+              }]
+              
+          },
+      
+          options: {}
+          });
+      </script>
+      <script>
+        Chart.defaults.global.legend.display = true;
+        var ctx = document.getElementById('myChart1').getContext('2d');
+        var chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: {{ pl }},
+            datasets: [{
+                label: 'Polarity',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: {{ pvalues }},
+                fill: false,
+            },
+            {
+                label: 'Subjectivity',
+                backgroundColor: 'rgb(66, 144, 245)',
+                borderColor: 'rgb(66, 144, 245)',
+                data: {{ svalues }},
+                fill: false,
+            }
+          ]
+        },
+
+        // Configuration options go here
+        options: {}
+        });
+      </script>
+      </body>
 </html>
