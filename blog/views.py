@@ -95,7 +95,6 @@ def analysis(request):
     dfw = []
     dfo = []
     pvalues = []
-    
     svalues = []
     for post in Post.objects.all():
         temp = list(TextBlob(post.content).sentiment)[0]
@@ -137,7 +136,7 @@ def analysis(request):
     hs.sort(key = lambda x:x[1])
     df2 = pd.DataFrame(hs, columns=['Word','Polarity'])
     pmean,pvar,smean,svar=0,0,0,0
-    if pvalues:
+    if len(pvalues):
         pmean=round(statistics.mean(pvalues),3)
         pvar=round(statistics.variance(pvalues),3)
         smean=round(statistics.mean(svalues),3)
@@ -146,10 +145,6 @@ def analysis(request):
         'df':df.head(10),
         'df1':df1.head(10),
         'df2':df2.head(10),
-        'pmean':round(statistics.mean(pvalues),3),
-        'pvar':round(statistics.variance(pvalues),3),
-        'smean':round(statistics.mean(svalues),3),
-        'svar':round(statistics.variance(svalues),3),
         't1':t1,
         't2':t2,
         'pvalues':pvalues,
