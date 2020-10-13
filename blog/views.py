@@ -97,9 +97,10 @@ def analysis(request):
     pvalues = []
     svalues = []
     for post in Post.objects.all():
-        temp = list(TextBlob(post.content).sentiment)[0]
+        temp1 = list(TextBlob(post.content).sentiment)[0]
+        temp = -temp1
         temp2 = list(TextBlob(post.content).sentiment)[1]
-        pvalues.append(temp)
+        pvalues.append(temp1)
         svalues.append(temp2)
         if temp < -0.6:
             t2[4]+=1
