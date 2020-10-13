@@ -2,46 +2,51 @@
  
 {% block content %}
     <br>
-    <div class="content-section" style=" background-color: #343a40;">
-        <center>
-            <h1 style="padding: 10px 0px 0px 15px; color:white">Analysis </h1>
-        </center>
-        
-    </div>
-    <div>
+        <div class="content-section" style=" background-color: #343a40;">
+            <center>
+                <h1 style="padding: 10px 0px 0px 15px; color:white">Analysis </h1>
+            </center>
+            
+        </div>
+        <div>
         <div class="row" style="padding: 10px 0px 0px 0px">
+            
             <div class="col-md-6">
-                <div class="card"> 
-                    <h3 class="card-header text-white" style="background-color: #343a40;">Top 5 Most Frequent Words</h3>
+                <div class="card" style="height: 100%;"> 
+                    <h3 class="card-header text-white" style="background-color: #343a40;">Most Frequent Words</h3>
+                    <br>
                     <div class="card-body">
-                    <table class="table"> 
-                        <thead class="thead-light">
-                            {% for data in df %} 
-                                <th>{{ data }}</th> 
-                            {% endfor %} 
-                        </thead>
-                        <tbody>
-                            {% for _, record in df.iterrows %} 
-                                <tr> 
-                                    {% for value in record %} 
-                                        <td>{{ value }}</td> 
-                                    {% endfor %} 
-                                </tr> 
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                        <table class="table"> 
+                            <thead class="thead-light">
+                                {% for data in df %} 
+                                    <th>{{ data }}</th> 
+                                {% endfor %} 
+                            </thead>
+                            <tbody>
+                                {% for _, record in df.iterrows %} 
+                                    <tr> 
+                                        {% for value in record %} 
+                                            <td>{{ value }}</td> 
+                                        {% endfor %} 
+                                    </tr> 
+                                {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="card" style="height: 100%; margin-bottom: 10px;"> 
+                <div class="card" style="height: 100%;"> 
                     <h3 class="card-header text-white" style="background-color: #343a40;">Rating Scale</h3>
                     <div class="card-body">
+                        <br><br><br><br><br><br>
                         <canvas id="myChart"></canvas>
                     </div>
                 </div>
             </div>
         </div>
+            
+        
         <br>
         <div class="row">
             <div class="col-md-12">

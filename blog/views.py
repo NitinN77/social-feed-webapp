@@ -92,6 +92,8 @@ def analysis(request):
     t1 = [1, 2, 3, 4, 5]
     t2 = [0, 0, 0, 0, 0]
     hs = []
+    dfw = []
+    dfo = []
     pvalues = []
     
     svalues = []
@@ -134,8 +136,14 @@ def analysis(request):
     df1 = pd.DataFrame(hs, columns=['Word','Polarity'])
     hs.sort(key = lambda x:x[1])
     df2 = pd.DataFrame(hs, columns=['Word','Polarity'])
+    pmean,pvar,smean,svar=0,0,0,0
+    if pvalues:
+        pmean=round(statistics.mean(pvalues),3)
+        pvar=round(statistics.variance(pvalues),3)
+        smean=round(statistics.mean(svalues),3)
+        svar=round(statistics.variance(svalues),3)
     context = {
-        'df':df.head(5),
+        'df':df.head(10),
         'df1':df1.head(10),
         'df2':df2.head(10),
         'pmean':round(statistics.mean(pvalues),3),
@@ -147,6 +155,10 @@ def analysis(request):
         'pvalues':pvalues,
         'svalues':svalues,
         'pl':pl,
+        'pmean':pmean,
+        'pvar':pvar,
+        'smean':smean,
+        'svar':svar,
     }
     
     return render(request, 'blog/analysis.html',context)
