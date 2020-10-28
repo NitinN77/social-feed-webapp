@@ -135,3 +135,25 @@
       left: 0;
       min-height: 300px;
   }
+
+  .media {
+    box-shadow: 0 4px 70px rgba(0,0,0,0.5);
+  }
+
+  .nav-item {
+    cursor: pointer;
+    transition: 200ms color ease-in;
+  }
+
+  .nav-item:hover {
+    transition: 100ms transform ease-in;
+    transform: scale(1.08);
+  }
+
+  .navbar {
+    background: linear-gradient( rgba(0,0,0,1),  #343a40);
+  }
+
+  .card{
+    box-shadow: 0 4px 70px rgba(0,0,0,0.6);
+  }
