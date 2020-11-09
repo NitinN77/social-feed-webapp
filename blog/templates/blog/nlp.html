@@ -1,0 +1,56 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+    <div class="row" style="padding: 10px 0px 0px 0px;">
+        <div class="col-md-8">
+            
+            {% for post in posts %}
+    
+            <article class="media content-section box"> 
+                <div class="media-body">
+                <div class="article-metadata">
+                    <a class="mr-2" href="#">by {{ post.3 }}</a>
+                    <small class="text-muted">{{ post.4 }}</small>
+                </div>
+                <h2><a class="article-title" href="#">{{ post.1 }}</a></h2>
+                <p class="article-content">{{ post.2 }}</p>
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#process{{post.5}}" aria-expanded="false" aria-controls="collapseExample"
+                style="margin-bottom: 10px;">
+                    Process
+                </button>
+                <div class="collapse" id="process{{post.5}}" >
+                    <div class="card card-body cardns">
+                      {{ post.6 | linebreaks }}
+                      <table class="table"> 
+                        <thead class="thead-light">
+                            {% for data in post.7 %} 
+                                <th>{{ data }}</th> 
+                            {% endfor %} 
+                        </thead>
+                        <tbody>
+                            {% for _, record in post.7.iterrows %} 
+                                <tr> 
+                                    {% for value in record %} 
+                                        <td>{{ value }}</td> 
+                                    {% endfor %} 
+                                </tr> 
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+                </div>
+                
+            </article>
+
+            
+        
+            {% endfor %}
+            
+            
+            
+            
+        </div>
+    </div>
+{% endblock content %}
+

@@ -157,3 +157,8 @@
   .card{
     box-shadow: 0 4px 70px rgba(0,0,0,0.6);
   }
+
+  .cardns{
+    box-shadow: 0 4px 70px rgba(0,0,0,0.0);
+    margin-bottom: 7px;
+  }

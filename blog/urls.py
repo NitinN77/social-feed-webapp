@@ -10,5 +10,6 @@ urlpatterns = [
     path('post/new/',PostCreateView.as_view(),name='post-create'),
     path('analysis/',views.analysis,name='blog-analysis'),
     path('scrape/',views.scrape,name='blog-scrape'),
+    path('nlp/',views.lp,name='blog-lp'),
 ]
 

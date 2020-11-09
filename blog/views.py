@@ -12,6 +12,31 @@ matplotlib.use('Agg')
 from matplotlib import pyplot as plt
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
+import spacy
+
+nlp = spacy.load("en_core_web_sm")
+
+def nlpf(s):
+    ret = []
+    rets = ''
+    doc = nlp(s)
+    str1 = ', '
+    str2 = ', '
+    rets += 'Nouns: ' + str1.join([chunk.text for chunk in doc.noun_chunks]) + '\n\n'
+    rets += 'Verbs: ' + str2.join([token.lemma_ for token in doc if token.pos_ == "VERB"]) + '\n\n'
+    text = []
+    pos = []
+    dep = []
+    for token in doc:
+        if token.dep_ != 'punct':
+            text.append(token.text)
+            pos.append(token.pos_)
+            dep.append(token.dep_)
+    df = pd.DataFrame(list(zip(text, pos, dep)), columns=['Word', 'Pos', 'Dep'])
+    ret = [rets, df]
+
+    return ret
+
 
 def clean(s):
     cx = s
@@ -27,7 +52,6 @@ def home(request):
 
     for post in Post.objects.all():
         posts2.append([-valcalc(post.content)-valcalc(post.title),post.title,post.content,post.author,post.date_posted,clean(post.title)])
-        print(clean(post.title))    
 
     for x in posts2:
         pq.put(x)
@@ -185,3 +209,14 @@ def scrape(request):
         'r':r,
     }
     return render(request, 'blog/scrape.html',context)
+
+
+def lp(request):
+    posts2 = []
+    for post in Post.objects.all():
+        posts2.append([-valcalc(post.content)-valcalc(post.title),post.title,post.content,post.author,post.date_posted,clean(post.title),nlpf(post.content)[0],nlpf(post.content)[1]])
+    context = {
+        'posts':posts2,
+
+    }
+    return render(request, 'blog/nlp.html', context)
