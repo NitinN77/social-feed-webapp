@@ -220,3 +220,4 @@ def lp(request):
 
     }
     return render(request, 'blog/nlp.html', context)
+    
