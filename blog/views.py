@@ -121,9 +121,9 @@ def analysis(request):
     pvalues = []
     svalues = []
     for post in Post.objects.all():
-        temp1 = list(TextBlob(post.content).sentiment)[0]
+        temp1 = list(TextBlob(post.content).sentiment)[0]+list(TextBlob(post.title).sentiment)[0]
         temp = -temp1
-        temp2 = list(TextBlob(post.content).sentiment)[1]
+        temp2 = list(TextBlob(post.content).sentiment)[1]+list(TextBlob(post.title).sentiment)[1]
         pvalues.append(temp1)
         svalues.append(temp2)
         if temp < -0.6:
@@ -137,6 +137,7 @@ def analysis(request):
         elif temp > 0.6:
             t2[0]+=1
         l.append(post.content)
+    print(t2)
     d1 = {}
     pl = list(range(1,len(pvalues)+1))
     for post in l:
